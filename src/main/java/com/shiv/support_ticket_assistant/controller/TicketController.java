@@ -18,6 +18,8 @@ import com.shiv.support_ticket_assistant.dto.TicketResponse;
 import com.shiv.support_ticket_assistant.dto.UpdateTicketRequest;
 import com.shiv.support_ticket_assistant.service.TicketService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/tickets")
 public class TicketController {
@@ -30,7 +32,7 @@ public class TicketController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public TicketResponse create(@RequestBody CreateTicketRequest req) {
+    public TicketResponse create(@Valid @RequestBody CreateTicketRequest req) {
         return ticketService.create(req);
     }
 
@@ -45,7 +47,7 @@ public class TicketController {
     }
 
     @PutMapping("/{id}")
-    public TicketResponse update(@PathVariable Long id, @RequestBody UpdateTicketRequest req) {
+    public TicketResponse update(@PathVariable Long id, @Valid @RequestBody UpdateTicketRequest req) {
         return ticketService.update(id, req);
     }
 
