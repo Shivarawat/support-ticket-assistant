@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleMismatch(MethodArgumentTypeMismatchException ex) {
-        return new ErrorResponse(400, "Invalid Id", null);
+        return new ErrorResponse(400, "Invalid value for '" + ex.getName() + "'", null);
     }
 
 }

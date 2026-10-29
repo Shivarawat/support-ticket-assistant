@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shiv.support_ticket_assistant.dto.CreateTicketRequest;
 import com.shiv.support_ticket_assistant.dto.TicketResponse;
 import com.shiv.support_ticket_assistant.dto.UpdateTicketRequest;
+import com.shiv.support_ticket_assistant.model.TicketStatus;
 import com.shiv.support_ticket_assistant.service.TicketService;
 
 import jakarta.validation.Valid;
@@ -36,9 +38,14 @@ public class TicketController {
         return ticketService.create(req);
     }
 
+    // GET /api/tickets              -> all tickets
+    // GET /api/tickets?status=OPEN  -> only OPEN tickets
     @GetMapping
-    public List<TicketResponse> findAll() {
-        return ticketService.findAll();
+    public List<TicketResponse> findAll(@RequestParam(required = false) TicketStatus status) {
+        if (status == null) {
+            return ticketService.findAll();
+        }
+        return ticketService.findByStatus(status);
     }
 
     @GetMapping("/{id}")

@@ -77,11 +77,7 @@ public class Ticket {
         return updatedAt;
     }
 
-    // Setters (no setter for createdAt; updatedAt changes only through touch())
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    // Setters (no setter for id: Postgres assigns it; none for createdAt; updatedAt changes only through touch())
     public void setTitle(String title) {
         this.title = title;
     }

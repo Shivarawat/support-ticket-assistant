@@ -9,6 +9,7 @@ import com.shiv.support_ticket_assistant.dto.TicketResponse;
 import com.shiv.support_ticket_assistant.dto.UpdateTicketRequest;
 import com.shiv.support_ticket_assistant.exception.TicketNotFoundException;
 import com.shiv.support_ticket_assistant.model.Ticket;
+import com.shiv.support_ticket_assistant.model.TicketStatus;
 import com.shiv.support_ticket_assistant.repository.TicketRepository;
 
 @Service
@@ -27,6 +28,10 @@ public class TicketService {
 
     public List<TicketResponse> findAll() {
         return repository.findAll().stream().map(TicketResponse::from).toList();
+    }
+
+    public List<TicketResponse> findByStatus(TicketStatus status) {
+        return repository.findByStatus(status).stream().map(TicketResponse::from).toList();
     }
 
     public TicketResponse findById(Long id) {
