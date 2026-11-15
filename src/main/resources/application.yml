@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: support-ticket-assistant
+
+  # Database connection (Postgres in Docker: container ticket-postgres)
+  datasource:
+    url: jdbc:postgresql://localhost:5433/tickets
+    username: ticket
+    password: ticket
+
+  jpa:
+    hibernate:
+      # Hibernate creates/updates tables to match the @Entity classes
+      ddl-auto: update
+    # Print the SQL Hibernate generates (for learning)
+    show-sql: true
