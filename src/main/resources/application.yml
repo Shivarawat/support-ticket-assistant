@@ -14,3 +14,7 @@ spring:
       ddl-auto: update
     # Print the SQL Hibernate generates (for learning)
     show-sql: true
+    properties:
+      hibernate:
+        # Format multi-line SQL so it's readable in the logs
+        format_sql: true
